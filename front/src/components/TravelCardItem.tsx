@@ -3,9 +3,20 @@ import Button from "./ui/Button";
 
 type TravelCardItemProps = {
     travel: TravelType
+    travelList: TravelType[]
+    setTravelList: (travelList: TravelType[]) => void
 }
 
-const TravelCardItem = ({ travel } : TravelCardItemProps) => {
+const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemProps) => {
+
+  const handleDelete = () => {
+      // delete element into array and update state
+      console.log("delete");
+      const index = travelList.indexOf(travel)
+      travelList.splice(index, 1)
+      setTravelList([...travelList])
+  }
+
     return ( 
         <div className="shadow-md rounded-md">
           <img src={travel.image} alt="" className="w-full" />
@@ -22,14 +33,10 @@ const TravelCardItem = ({ travel } : TravelCardItemProps) => {
             variant="primary"
           />
 
-          {/* 
-            Create handleDeleteTravel function
-              delete element into array and update state
-            add props onClick into Button component
-           */}
           <Button 
             text="Delete"
             variant="danger"
+            onClick={handleDelete}
           />
         </div>
      );

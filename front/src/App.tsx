@@ -40,7 +40,12 @@ function App() {
 
       <div className="grid grid-cols-3 gap-4">
         {travelList.map((travel) => 
-          <TravelCardItem travel={travel} key={travel.id} />
+          <TravelCardItem 
+            travel={travel} 
+            key={travel.id} 
+            travelList={travelList}
+            setTravelList={setTravelList}
+          />
         )}
       </div>
     </div>
