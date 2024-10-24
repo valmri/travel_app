@@ -20,7 +20,7 @@
         "name": "Tokyo",
         "city": "Tokyo",
         "country": "Japan",
-        "image": "https://www.planetware.com/photos-large/JPN/japan-tokyo-mount-fuji.jpg",
+        "image": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dG9reW98ZW58MHx8MHx8fDA%3D",
         "description": "Tokyo is a bustling metropolis with cutting-edge technology, traditional temples, and an exciting nightlife."
     },
     {
@@ -44,7 +44,7 @@
         "name": "London",
         "city": "London",
         "country": "United Kingdom",
-        "image": "https://www.planetware.com/photos-large/ENG/london-big-ben.jpg",
+        "image": "https://babylontours.fr/wp-content/uploads/2016/09/london-441853_960_720.jpg",
         "description": "London is a cultural hub with historic landmarks like Big Ben, the Tower of London, and a vibrant arts scene."
     },
     {
@@ -52,7 +52,7 @@
         "name": "Rio de Janeiro",
         "city": "Rio de Janeiro",
         "country": "Brazil",
-        "image": "https://www.planetware.com/photos-large/BRA/brazil-rio-de-janeiro-christ-the-redeemer.jpg",
+        "image": "https://reporterre.net/local/cache-gd2/81/398f8dba6bd738959fa79f34a2d2fc.jpg?1711021882",
         "description": "Rio de Janeiro is famous for its breathtaking landscapes, Christ the Redeemer statue, and its annual Carnival celebration."
     },
     {
@@ -68,7 +68,7 @@
         "name": "Bangkok",
         "city": "Bangkok",
         "country": "Thailand",
-        "image": "https://www.planetware.com/photos-large/THA/thailand-bangkok-grand-palace.jpg",
+        "image": "https://www.paradisvoyage.fr/wp-content/uploads/b/59/Bangkok-venice.jpg",
         "description": "Bangkok is a bustling city known for its ornate temples, street food, and vibrant night markets."
     },
     {
@@ -76,7 +76,7 @@
         "name": "Dubai",
         "city": "Dubai",
         "country": "United Arab Emirates",
-        "image": "https://www.planetware.com/photos-large/UAED/dubai-burj-khalifa.jpg",
+        "image": "https://www.dubai.it/fr/wp-content/uploads/sites/143/dubai-marina-hd.jpg",
         "description": "Dubai is famous for its modern architecture, including the Burj Khalifa, luxury shopping, and desert safaris."
     }
 ]
