@@ -12,7 +12,11 @@ const router = createBrowserRouter([
   {
     path: "/travels/:id",
     element: <SingleTravelPage />,
-  }
+  },
+  {
+    path: "*",
+    element: <h1>404 not found</h1>,
+  },
 ]);
 
 createRoot(document.getElementById('root')!).render(
