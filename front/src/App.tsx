@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import TravelCardItem from "./components/TravelCardItem"
 import { TravelType } from "./types/travel.type"
 import TravelFormAdd from "./components/TravelFormAdd"
+import Typography from "./components/ui/Typography"
 
 function App() {
   const [counter, setCounter] = useState(0)
@@ -21,7 +22,11 @@ function App() {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-4xl font-bold text-red-400 my-10">Travel App</h1>
+      <Typography
+        level={1}
+      >
+        Travel App
+      </Typography>
 
       <TravelFormAdd 
         travelList={travelList}
