@@ -10,8 +10,6 @@ type TravelCardItemProps = {
 const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemProps) => {
 
   const handleDelete = () => {
-      // delete element into array and update state
-      console.log("delete");
       const index = travelList.indexOf(travel)
       travelList.splice(index, 1)
       setTravelList([...travelList])
