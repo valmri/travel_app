@@ -3,25 +3,30 @@ import { useParams } from "react-router-dom";
 import { TravelType } from "../types/travel.type";
 import Typography from "./ui/Typography";
 import TravelList from "./TravelList";
+import Button from "./ui/Button";
 
 const SingleTravelPage = () => {
     const { id } = useParams()
     const [travel, setTravel] = useState<TravelType>({})
     const [travelList, setTravelList] = useState<TravelType[]>([])
+    const [limit, setLimit] = useState<number>(3)    
 
     useEffect(() => {
-        console.log("params id : ", id)
-        console.log("params id : ", typeof id)
-        fetchTravelList()
+        // Uniquement lorsque l'id change
         fetchTravel()
     }, [id])
+
+    useEffect(() => {
+        // Chargement des travels si l'id change (changement de page) ou  si on appuis sur le bouton show more
+        fetchTravelList()
+    }, [id, limit])
 
     const fetchTravelList = async () => {
         const response = await fetch("/travels.json")
         const data = await response.json()
 
         const filterTravelList = data.filter((travel: TravelType) => travel.id !== Number(id))
-        const limitTravelList = filterTravelList.slice(0, 3)
+        const limitTravelList = filterTravelList.slice(0, limit)
 
         setTravelList(limitTravelList)
     }
@@ -47,14 +52,18 @@ const SingleTravelPage = () => {
                 {travel.description}
             </p>
 
-            <div className="mt-20">
+            <div className="mt-20 flex items-center flex-col gap-10">
                 <TravelList 
                     travelList={travelList}
                     setTravelList={setTravelList}
+                />
+                <Button 
+                    text="Load more"
+                    onClick={() => setLimit(limit + 3)}
                 />
             </div>
         </div>
      );
 }
- 
+
 export default SingleTravelPage;
