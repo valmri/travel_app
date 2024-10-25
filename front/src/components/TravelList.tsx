@@ -1,10 +1,23 @@
-const TravelList = () => {
-    // Create state
+import { TravelType } from "../types/travel.type";
+import TravelCardItem from "./TravelCardItem";
 
-    // fetch data
+type TravelListProps = {
+    travelList: TravelType[],
+    setTravelList: (travelList: TravelType[]) => void
+}
 
+const TravelList = ({ travelList, setTravelList } : TravelListProps) => {
     return ( 
-        // show travels
+        <div className="grid grid-cols-3 gap-4">
+            {travelList.map((travel) => 
+                <TravelCardItem 
+                    travel={travel} 
+                    key={travel.id} 
+                    travelList={travelList}
+                    setTravelList={setTravelList}
+                />
+            )}
+        </div>
      );
 }
  
