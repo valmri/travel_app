@@ -24,6 +24,15 @@ const travelList = [
   },
 ];
 
+interface ITravel {
+  id: number;
+  name: string;
+  city: string;
+  country: string;
+  image: string;
+  description: string;
+}
+
 const app = express();
 app.use(express.json());
 app.use(
@@ -42,30 +51,76 @@ app.get("/travels", (req, res) => {
 });
 
 app.post("/travels", (req, res) => {
-  console.log("POST REQUEST : ", req.body);
-  // create const travel with body
-  // add id param to object travel
-  // insert travel in travelList
-  // send back add travel object
-  res.status(200).send("Create a travel");
+  const body = req.body;
+
+  let newTravel: ITravel = {
+    id: generateNextTravelId(),
+    name: body.name,
+    city: body.city,
+    country: body.country,
+    image: body.image,
+    description: body.description,
+  };
+
+  travelList.push(newTravel);
+  res.status(200).send(newTravel);
 });
 
 app.delete("/travels/:id", (req, res) => {
-  console.log("DELETE REQUEST : ", req.params);
-  // create conts id with req.params.id
-  // delete travel with id in to travelList
-  // send back succes to delete
-  res.send("Delete a travel");
+  const idTravel = req.params.id;
+  const index = travelList.findIndex((item) => item.id === parseInt(idTravel));
+
+  if (index !== -1) {
+    travelList.splice(index, 1);
+  } else {
+    res.status(404).send("Travel not found");
+  }
+
+  res.status(200).send(`Successful deletion of the travel number ${idTravel}`);
 });
 
 app.get("/travels/:id", (req, res) => {
-  res.send("Get one travel");
+  const idTravel = req.params.id;
+
+  const travel = travelList.find((item) => item.id === parseInt(idTravel));
+
+  if (travel === undefined) {
+    res.status(404).send("Travel not found");
+  }
+
+  res.status(200).send(travel);
 });
 
 app.put("/travels/:id", (req, res) => {
-  res.send("Update a travel");
+  const idTravel = req.params.id;
+  const body = req.body;
+
+  const travelIndex = travelList.findIndex(
+    (item) => item.id === parseInt(idTravel)
+  );
+  if (travelIndex === -1) {
+    res.status(404).send("Travel not found");
+  }
+
+  const updatedTravel = {
+    ...travelList[travelIndex],
+    name: body.name,
+    city: body.city,
+    country: body.country,
+    image: body.image,
+    description: body.description,
+  };
+
+  travelList[travelIndex] = updatedTravel;
+
+  res.status(200).send(updatedTravel);
 });
 
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
 });
+
+const generateNextTravelId = () => {
+  const lastTravel = travelList[travelList.length - 1]?.id;
+  return lastTravel ? lastTravel + 1 : 1;
+};
