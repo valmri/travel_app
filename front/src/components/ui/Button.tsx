@@ -14,7 +14,7 @@ const Button = ({ text, type = "button", variant = "primary", onClick } : Button
     return ( 
         <button
             type={type}
-            className={`px-6 py-4 rounded-md text-white font-bold transition-all ${buttonStyle[variant]}`}
+            className={`px-6 py-4 rounded-md text-white font-bold transition-all ${buttonStyle[variant]} w-full`}
             onClick={onClick}
         >
             {text}

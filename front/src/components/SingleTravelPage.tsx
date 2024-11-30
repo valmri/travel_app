@@ -6,64 +6,58 @@ import TravelList from "./TravelList";
 import Button from "./ui/Button";
 
 const SingleTravelPage = () => {
-    const { id } = useParams()
-    const [travel, setTravel] = useState<TravelType>({})
-    const [travelList, setTravelList] = useState<TravelType[]>([])
-    const [limit, setLimit] = useState<number>(3)    
+  const { id } = useParams();
+  const [travel, setTravel] = useState<TravelType>({});
+  const [travelList, setTravelList] = useState<TravelType[]>([]);
+  const [limit, setLimit] = useState<number>(3);
 
-    useEffect(() => {
-        // Uniquement lorsque l'id change
-        fetchTravel()
-    }, [id])
+  useEffect(() => {
+    // Uniquement lorsque l'id change
+    fetchTravel();
+  }, [id]);
 
-    useEffect(() => {
-        // Chargement des travels si l'id change (changement de page) ou  si on appuis sur le bouton show more
-        fetchTravelList()
-    }, [id, limit])
+  useEffect(() => {
+    // Chargement des travels si l'id change (changement de page) ou  si on appuis sur le bouton show more
+    fetchTravelList();
+  }, [id, limit]);
 
-    const fetchTravelList = async () => {
-        const response = await fetch("/travels.json")
-        const data = await response.json()
+  const fetchTravelList = async () => {
+    const response = await fetch("http://localhost:8000/travels");
+    const data = await response.json();
 
-        const filterTravelList = data.filter((travel: TravelType) => travel.id !== Number(id))
-        const limitTravelList = filterTravelList.slice(0, limit)
+    const filterTravelList = data.filter(
+      (travel: TravelType) => travel.id !== Number(id)
+    );
+    const limitTravelList = filterTravelList.slice(0, limit);
 
-        setTravelList(limitTravelList)
-    }
+    setTravelList(limitTravelList);
+  };
 
-    const fetchTravel = async () => {
-        const response = await fetch("/travels.json")
-        const travelList = await response.json()
-        const findTravel = travelList.find((travel: TravelType) => travel.id === Number(id))
-        setTravel(findTravel)
-    }
+  const fetchTravel = async () => {
+    const response = await fetch(
+      `http://localhost:8000/travels/${Number(id)}`,
+      {
+        method: "GET",
+      }
+    );
+    const findTravel = await response.json();
+    setTravel(findTravel);
+  };
 
-    return ( 
-        <div  className="container mx-auto">
-            <Typography
-                level={1}
-            >
-                {travel.name}
-            </Typography>
+  return (
+    <div className="container mx-auto">
+      <Typography level={1}>{travel.name}</Typography>
 
-            <img src={travel.image} alt="" />
+      <img src={travel.image} alt="" />
 
-            <p>
-                {travel.description}
-            </p>
+      <p>{travel.description}</p>
 
-            <div className="mt-20 flex items-center flex-col gap-10">
-                <TravelList 
-                    travelList={travelList}
-                    setTravelList={setTravelList}
-                />
-                <Button 
-                    text="Load more"
-                    onClick={() => setLimit(limit + 3)}
-                />
-            </div>
-        </div>
-     );
-}
+      <div className="mt-20 flex items-center flex-col gap-10">
+        <TravelList travelList={travelList} setTravelList={setTravelList} />
+        <Button text="Load more" onClick={() => setLimit(limit + 3)} />
+      </div>
+    </div>
+  );
+};
 
 export default SingleTravelPage;
