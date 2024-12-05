@@ -1,0 +1,18 @@
+services:
+  database:
+    image: postgres
+    container_name: postgres_travel
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: travel
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    container_name: adminer
+    environment:
+      - ADMINER_DEFAULT_SERVER=database
+      - ADMINER_DESIGN=pepa-linha
