@@ -2,18 +2,20 @@ import pool from "../config/database";
 import { ITravel, ITravelDTO } from "./travel.type";
 
 export const findAll = async (): Promise<ITravel[]> => {
-  const { rows } = await pool.query("SELECT * FROM travel ORDER BY id");
+  const { rows } = await pool.query("SELECT * FROM travels ORDER BY id");
   return rows;
 };
 
 export const findOne = async (id: number): Promise<ITravel[]> => {
-  const { rows } = await pool.query("SELECT * FROM travel WHERE id = $1", [id]);
+  const { rows } = await pool.query("SELECT * FROM travels WHERE id = $1", [
+    id,
+  ]);
   return rows[0];
 };
 
 export const create = async (travelDTO: ITravelDTO): Promise<ITravel> => {
   const { rows } = await pool.query(
-    "INSERT INTO travel (name, city, country, image, description) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, city, country, image, description",
+    "INSERT INTO travels (name, city, country, image, description) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, city, country, image, description",
     [
       travelDTO.name,
       travelDTO.city,
@@ -30,7 +32,7 @@ export const update = async (
   travelDTO: ITravelDTO
 ): Promise<ITravel> => {
   const { rows } = await pool.query(
-    "UPDATE travel SET name = $1, city = $2, country = $3, image = $4, description = $5 WHERE id = $6 RETURNING id, name, city, country, image, description",
+    "UPDATE travels SET name = $1, city = $2, country = $3, image = $4, description = $5 WHERE id = $6 RETURNING id, name, city, country, image, description",
     [
       travelDTO.name,
       travelDTO.city,
@@ -44,6 +46,6 @@ export const update = async (
 };
 
 export const remove = async (id: number): Promise<void> => {
-  const { rows } = await pool.query("DELETE FROM travel WHERE id = $1", [id]);
+  const { rows } = await pool.query("DELETE FROM travels WHERE id = $1", [id]);
   return rows[0];
 };

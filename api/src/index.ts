@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import TravelController from "./travel/travel.controller"
+import TravelController from "./travel/travel.controller";
+import UserController from "./user/user.controller";
 
 const travelList: any[] = [];
 
@@ -23,6 +24,7 @@ app.use(
 );
 
 app.use("/travels", TravelController);
+app.use("/users", UserController);
 
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
