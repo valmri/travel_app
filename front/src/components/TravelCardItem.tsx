@@ -44,7 +44,7 @@ const TravelCardItem = ({
         <Link to={`/travels/${travel.id}`}>
           <Typography level={3}>{travel.name}</Typography>
         </Link>
-        <p>{travel?.description?.substring(10)}...</p>
+        <p>{travel?.description?.substring(0,200)}...</p>
       </div>
 
       <div className="flex flex-col justify-end gap-2 flex-wrap px-4 pb-4">
