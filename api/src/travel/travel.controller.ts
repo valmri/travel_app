@@ -1,9 +1,26 @@
 import { Router, Request, Response } from "express";
-import { create, findAll, findOne, update, remove } from "./travel.service";
+import {
+  create,
+  findAll,
+  findOne,
+  update,
+  remove,
+  findBySearch,
+} from "./travel.service";
+import { ITravel } from "./travel.type";
 const router = Router();
 
 router.get("/", async (req: Request, res: Response) => {
-  const travels = await findAll();
+  const searchArguments: string | undefined = req.query?.search as
+    | string
+    | undefined;
+
+  let travels: ITravel[];
+  if (searchArguments) {
+    travels = await findBySearch(searchArguments);
+  } else {
+    travels = await findAll();
+  }
   res.json(travels);
 });
 

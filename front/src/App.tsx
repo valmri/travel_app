@@ -3,6 +3,7 @@ import { TravelType } from "./types/travel.type";
 import TravelFormAdd from "./components/TravelFormAdd";
 import Typography from "./components/ui/Typography";
 import TravelList from "./components/TravelList";
+import TravelSearch from "./components/TravelSearch";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -26,6 +27,7 @@ function App() {
 
       <TravelFormAdd travelList={travelList} setTravelList={setTravelList} />
 
+      <TravelSearch setTravelList={setTravelList}></TravelSearch>
       <button
         onClick={() => {
           console.log("Click button");

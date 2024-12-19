@@ -49,3 +49,10 @@ export const remove = async (id: number): Promise<void> => {
   const { rows } = await pool.query("DELETE FROM travels WHERE id = $1", [id]);
   return rows[0];
 };
+
+export const findBySearch = async (argument: string): Promise<ITravel[]> => {
+  const { rows } = await pool.query(
+    `SELECT * FROM travels WHERE name LIKE '%${argument}%' OR city ILIKE '%${argument}%' OR name LIKE '%${argument}%' OR country LIKE '%${argument}%' OR description LIKE '%${argument}%'`
+  );
+  return rows;
+};

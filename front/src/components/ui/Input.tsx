@@ -22,7 +22,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       name={name}
-      className="border-2 border-gray-300 rounded-md px-4 py-2"
+      className="border-2 border-gray-300 rounded-md px-4 py-2 w-full"
       required={required}
     />
   );
